@@ -39,12 +39,12 @@ Dedicated command files in `.claude/commands/`. Executable skills above are also
 | Command | Usage |
 |---|---|
 | `/figma-block <Figma node URL>` | Fetch a Figma node and build a production-ready ACF block (delegates to `acf-block-builder`) |
+| `/figma-cache <Figma node URL>` | Fetch a single Figma node once and store local cache JSON for reuse in later runs |
 | `/review-block <block-slug>` | Run a full code review on a block (delegates to `code-review-agent`) |
 | `/debug-block <block-slug> <issue>` | Debug a broken or misbehaving block (delegates to `debug-agent`) |
 | `/optimize-block <block-slug>` | Optimize a block for performance (delegates to `performance-agent`) |
-| `/figma-pipeline <Figma node URL>` | Run the full Figma → build → review → fix → optimize → test pipeline (delegates to `build-from-figma-agent`) |
+| `/figma-pipeline <Figma node URL | cache:/abs/path.json>` | Run the full Figma-to-build pipeline using live Figma or cached node JSON (delegates to `build-from-figma-agent`) |
 | `/review-all` | Review every block in the project in parallel, auto-fix critical issues, return consolidated report |
-
 ## Core expectations
 
 - Build production-ready WordPress blocks only.
