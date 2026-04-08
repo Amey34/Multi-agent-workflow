@@ -18,6 +18,9 @@ Use these agents for autonomous multi-step tasks. Do not replicate their work in
 | `accessibility-agent` | Audit and fix accessibility issues — ARIA, alt text, keyboard navigation, semantic HTML |
 | `architecture-agent` | Review theme folder structure, block organisation, and asset loading patterns |
 | `build-from-figma-agent` | Full pipeline orchestrator — fetch Figma design, create blocks, review, fix, optimize, and test end-to-end |
+| `figma-react-to-acf-orchestrator` | Separate pipeline orchestrator for converting React output into ACF blocks |
+| `react-component-analyzer-agent` | Analyze React component structure and produce block split + field mapping hints |
+| `acf-field-mapper-agent` | Build ACF field architecture from React-derived structures |
 
 ## Skills
 
@@ -31,6 +34,7 @@ These skills are loaded automatically by agents and commands. Do not restate the
 | `playwright-test` | Reference | Playwright test checklist and output format (loaded by `playwright-block-tester`) |
 | `create-acf-block` | Executable | Standalone single-pass block creation (loads `acf-standards` + `security-seo`); invoke as `/create-acf-block` |
 | `playwright-test` | Executable + Reference | Lightweight single-pass Playwright test; invoke as `/playwright-test` when a full agent run is not needed |
+| `react-to-acf-mapping` | Reference | Rules for translating React components and props into ACF fields/templates |
 
 ## Commands
 
@@ -44,6 +48,7 @@ Dedicated command files in `.claude/commands/`. Executable skills above are also
 | `/debug-block <block-slug> <issue>` | Debug a broken or misbehaving block (delegates to `debug-agent`) |
 | `/optimize-block <block-slug>` | Optimize a block for performance (delegates to `performance-agent`) |
 | `/figma-pipeline <Figma node URL | cache:/abs/path.json>` | Run the full Figma-to-build pipeline using live Figma or cached node JSON (delegates to `build-from-figma-agent`) |
+| `/figma-react-acf-pipeline react:/abs/path.tsx` | Run the separate React-to-ACF pipeline (delegates to `figma-react-to-acf-orchestrator`) |
 | `/review-all` | Review every block in the project in parallel, auto-fix critical issues, return consolidated report |
 ## Core expectations
 
