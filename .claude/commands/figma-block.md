@@ -1,6 +1,6 @@
 ---
 name: figma-block
-description: Build a production-ready ACF block from a Figma node link. Usage: /figma-block <Figma node URL>
+description: "DRAFT/PROTOTYPE PATH — builds a single ACF block from a Figma node with contract validation only. For full quality-gated output (review, token sync, optimization, Playwright) use /figma-pipeline instead. Usage: /figma-block <Figma node URL>"
 ---
 
 Build a production-ready ACF block from the provided Figma node link.

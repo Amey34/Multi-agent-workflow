@@ -38,8 +38,6 @@ These skills are loaded automatically by agents and commands.
 | `figma-to-acf-mapping` | Reference | Rules for translating Figma node structure into ACF block partitions and fields |
 | `acf-contracts` | Reference | Field JSON ↔ template contract validation framework and escaping rules |
 | `design-token-bridge` | Reference | Token normalization from Figma/React design values to SCSS/CSS variables |
-| `visual-parity` | Reference | Breakpoint matrix and drift severity guide for screenshot comparisons |
-| `codex-executor` | Executable | Delegate scoped implementation to Codex MCP with preflight and acceptance checks |
 
 ## Commands
 
@@ -47,7 +45,7 @@ Dedicated command files in `.claude/commands/`. Executable skills are also invoc
 
 | Command | Usage |
 |---|---|
-| `/figma-block <Figma node URL>` | Fetch a Figma node and build a production-ready ACF block (delegates to `acf-block-builder`) |
+| `/figma-block <Figma node URL>` | Draft/prototype path — single block build with contract validation only; use `/figma-pipeline` for full quality-gated output |
 | `/figma-cache <Figma node URL>` | Fetch a single Figma node once and store local cache JSON |
 | `/figma-to-pen <figma:<URL> | cache:/abs/path.json> [pen:/abs/path/output.pen]` | Convert Figma source directly into `.pen` using figma+pencil MCP (delegates to `figma-to-pen-agent`) |
 | `/review-block <block-slug>` | Run full code review on a block (delegates to `code-review-agent`) |
@@ -60,8 +58,7 @@ Dedicated command files in `.claude/commands/`. Executable skills are also invoc
 | `/sync-design-tokens <source> [scope:]` | Normalize and sync design tokens from Figma/React into block SCSS variables |
 | `/visual-regression-block site-url: scope: [reference:]` | Screenshot parity checks across breakpoints vs. Figma/cache/baseline |
 | `/post-pipeline-quality-gate source: scope: [site-url:] [reference:]` | Sequenced gate: contract audit → token sync → visual regression after any pipeline run |
-| `/codex-delegate <task>` | Delegate scoped implementation task to Codex MCP |
-| `/codex-agent-delegate agent:<name> task:<work>` | Delegate with explicit `.codex/agents/<name>.md` policy context |
+| `/codex-delegate <task>` | Delegate scoped implementation task to Codex MCP; supports optional `agent:<name> task:<work>` form for policy-context delegation |
 
 ## Core expectations
 
@@ -113,9 +110,8 @@ Always escape output in PHP.
 
 Codex delegation must run through Codex MCP server tools.
 
-- Preferred command: `/codex-delegate <task>`
-- Agent-role command: `/codex-agent-delegate agent:<name> task:<work>`
-- Wrapper skill: `codex-executor`
+- Plain delegation: `/codex-delegate <task>`
+- With agent policy: `/codex-delegate agent:<name> task:<work>`
 
 Guardrails:
 - use Codex MCP server (no script bridge)

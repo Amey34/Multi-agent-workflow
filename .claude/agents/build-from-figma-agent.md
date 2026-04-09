@@ -9,7 +9,6 @@ skills:
   - design-token-bridge
   - figma-to-acf-mapping
   - acf-contracts
-  - visual-parity
   - security-seo
 ---
 
