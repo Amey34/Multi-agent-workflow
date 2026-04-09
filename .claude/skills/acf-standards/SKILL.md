@@ -1,87 +1,72 @@
 ﻿---
 name: acf-standards
-description: Production rules for building modern WordPress ACF Gutenberg blocks in this project.
+description: Canonical implementation standards for production ACF Gutenberg blocks in this repository.
 disable-model-invocation: true
 ---
 
-# ACF Block Standards
+# ACF Standards
 
-Apply this standard whenever creating or modifying ACF blocks.
+Apply these rules whenever creating or modifying block code.
 
-## 1) Registration and Discovery
+## 1. Registration and Metadata
 
-- Use `block.json` registration for each block.
-- Do not use deprecated `acf_register_block_type()` patterns.
-- Ensure `block.json` includes:
-  - `apiVersion: 2`
-  - stable `name`, `title`, `category`, `supports`
-  - `acf.renderTemplate`
-- Theme-level registration should follow project convention:
-  `register_block_type(__DIR__ . '/blocks/{slug}')`
+- use `block.json` registration
+- avoid deprecated block registration APIs
+- ensure stable identifiers and `acf.renderTemplate`
+- include supports/settings that match real block behavior
 
-## 2) Required File Layout
+## 2. Required File Set
 
-Each block should have:
-- `blocks/{slug}/block.json`
-- `blocks/{slug}/render.php`
-- `blocks/{slug}/_style.scss`
-- `blocks/{slug}/script.js` only when needed
-- `acf-json/{slug}-field-group.json`
+Each block should include:
+- `block.json`
+- `render.php`
+- `_style.scss`
+- `script.js` only when interaction exists
+- local ACF JSON in `acf-json/`
 
-## 3) Slug and Naming Rules
+## 3. Naming Consistency
 
-- Slug must be descriptive kebab-case.
-- Use the same slug across:
-  - folder name
-  - block name
-  - field prefixes
-  - CSS class namespace
-  - JSON filename
-- Never leave placeholder slugs in committed files.
+- descriptive kebab-case slug
+- slug aligned across folder, block name, fields, and CSS namespace
+- no placeholder/demo slugs in final output
 
-## 4) ACF Field Rules
+## 4. Field Architecture
 
-- Use import-ready local JSON format.
-- Field keys must be unique (`field_xxxxxxxx` pattern).
-- Prefix field names with block slug.
-- Keep field architecture editor-friendly:
-  - shallow nesting where possible
-  - repeaters only for true repeated structures
-- Set image/link return formats intentionally.
-- Include valid block location rules.
+- use import-ready local JSON
+- stable, unique field keys
+- slug-prefixed field names
+- editor-friendly structure with minimal nesting
+- explicit return formats for links/images
 
-## 5) PHP Template Rules
+## 5. Template Standards
 
-- Use semantic, accessible markup.
-- Apply `get_block_wrapper_attributes()` on outer element.
-- Escape all dynamic output (`esc_html`, `esc_url`, `esc_attr`, etc.).
-- Use null-safe checks for optional fields.
-- Avoid unnecessary wrapper divs and duplicated logic.
+- semantic markup and accessible structure
+- escaped dynamic output everywhere
+- null-safe rendering for optional fields
+- avoid unnecessary wrapper depth
 
-## 6) SCSS Rules
+## 6. SCSS Standards
 
-- Block-scoped naming (BEM-style encouraged).
-- Include responsive behavior for mobile/tablet/desktop.
-- Prefer fluid sizing where appropriate (`clamp`, `rem`, `%`).
-- Keep selectors maintainable and not overly specific.
+- block-scoped selectors
+- responsive coverage for mobile/tablet/desktop
+- maintainable specificity
+- fluid typography/spacing where appropriate
 
-## 7) JavaScript Rules
+## 7. JS Standards
 
-- Add JS only for actual interactivity.
-- Must work in frontend and editor contexts.
-- Reinitialize safely after editor rerenders when needed.
-- Avoid global namespace leakage.
+- add JS only for real behavior
+- support frontend + editor lifecycle
+- avoid global namespace leakage
 
-## 8) Integration Rules
+## 8. Theme Integration
 
-- Add block style import to `assets/css/styles.scss` once:
-  `@import '../../blocks/{slug}/style';`
-- Never duplicate import lines.
+- ensure block style import exists once in `assets/css/styles.scss`
+- avoid duplicate imports
 
-## 9) Final Quality Gate
+## 9. Final Gate
 
-Before completion, verify:
-- no hardcoded editor-managed content
-- no unescaped dynamic output
-- field names/types align with template usage
-- responsive and semantic behavior remains sound
+Before completion confirm:
+- editable content is field-driven
+- template and field contracts align
+- escaping/a11y basics pass
+- responsive behavior is preserved

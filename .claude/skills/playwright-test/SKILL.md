@@ -1,45 +1,41 @@
 ﻿---
 name: playwright-test
-description: Test a WordPress block in a real browser with Playwright MCP, validate frontend/editor behavior, and report issues concisely.
+description: Real-browser QA checklist for block-level rendering, interaction, responsiveness, and runtime health.
 ---
 
-Use Playwright MCP for deterministic functional and visual checks.
+Use this skill for focused Playwright-based validation.
 
 ## Preconditions
 
-- require explicit page URL
-- confirm target scope and expected behavior
+- explicit URL is mandatory
+- define target scope (specific block/section/page)
 
 ## Test Checklist
 
 1. Rendering
-- frontend visible state
-- editor preview (if available)
+- expected content and structure appear
+- no obvious clipping/overlap defects
 
-2. Responsive behavior
-- representative mobile/tablet/desktop viewports
-- wrapping, clipping, horizontal scroll checks
+2. Responsiveness
+- test representative mobile/tablet/desktop widths
+- check wrapping, overflow, and layout shifts
 
-3. Interaction checks
+3. Interactions
 - hover/focus/click behavior
-- toggles, tabs, accordion, sliders (if present)
+- controls toggle/navigate as intended
 
-4. Console health
-- JS errors/warnings impacting behavior
+4. Runtime health
+- inspect console for errors/warnings that affect UX
 
-5. Keyboard access
-- focus reachability
-- actionable controls operable via keyboard
+5. Keyboard basics
+- interactive elements reachable by tab
+- focus visible and progression sane
 
-6. Media behavior
-- autoplay/muted expectations for video
-- poster/load behavior where relevant
-
-## Output
+## Output Contract
 
 Return only:
 - pass/fail summary
-- issue list with concise repro steps
-- suggested fixes
+- issues with concise repro steps
+- minimal suggested fixes
 
-Do not include verbose logs unless requested.
+Do not include noisy logs unless specifically requested.

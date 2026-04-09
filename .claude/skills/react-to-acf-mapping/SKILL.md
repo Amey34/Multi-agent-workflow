@@ -1,58 +1,57 @@
 ﻿---
 name: react-to-acf-mapping
-description: Mapping rules for converting Figma Make React components into WordPress ACF block structures, fields, and safe PHP rendering contracts.
+description: Practical mapping rules for converting React structures into ACF field models and safe PHP templates.
 disable-model-invocation: true
 ---
 
-# React to ACF Mapping Rules
+# React to ACF Mapping
 
-Use this skill to convert React structures into maintainable ACF block architecture.
+Use this guide when converting React components into editor-manageable ACF blocks.
 
-## 1) Block Partitioning
+## 1. Partition Strategy
 
-- Prefer section-level block boundaries.
-- Keep tiny presentational fragments inside parent block unless reused.
-- Avoid over-fragmentation that hurts editor usability.
+- map major sections to block candidates
+- keep tiny view-only fragments inside parent block
+- split only when editor ownership or reuse justifies it
 
-## 2) Data Mapping
+## 2. Field Mapping Rules
 
-- static JSX copy -> text/textarea/wysiwyg
-- image `src` + `alt` -> image field (array return)
-- link `href` + label -> link field
-- repeated arrays/maps -> repeater
-- optional nested structures -> group fields
-- transient UI state usually stays out of ACF
+- static text -> text/textarea/wysiwyg
+- link pairs -> link field
+- image `src + alt` -> image field (array return)
+- repeated arrays -> repeater
+- optional nested objects -> group field
+- transient UI state usually stays in JS
 
-## 3) Styling Migration
+## 3. Template Translation
 
-- translate utility-heavy classes to scoped SCSS
-- use semantic, slug-based class naming
-- preserve responsive intent from React layout
-- avoid framework runtime style assumptions
+- React conditionals -> null-safe PHP conditionals
+- `map()` loops -> repeater loops
+- preserve semantic heading and section structure
+- escape all dynamic output
 
-## 4) JSX to PHP Translation
+## 4. Styling Translation
 
-- conditionals -> null-safe PHP `if` branches
-- list maps -> `have_rows()` + `the_row()` loops
-- fragments -> semantic wrappers only when required
-- escape every dynamic output value
+- convert utility-heavy class stacks into maintainable SCSS
+- keep class naming block-scoped and semantic
+- preserve responsive intent
 
-## 5) JavaScript Translation
+## 5. Interaction Translation
 
-- add `script.js` only for meaningful interactivity
-- avoid React dependency in final frontend
-- ensure editor/frontend safe initialization
+- add `script.js` only when behavior is required
+- avoid React runtime dependency on frontend
+- ensure editor/frontend safe re-init for dynamic blocks
 
-## 6) Authoring Experience
+## 6. Editor Experience
 
-- editor-friendly field labels
+- human-readable field labels
 - minimal required fields
-- sensible defaults for common content fields
-- avoid over-configuring decorative details
+- sensible defaults for common content patterns
+- avoid over-configuring decorative controls
 
-## 7) Validation Checklist
+## 7. Validation
 
-- every editable item is field-backed
-- field names align with slug prefixes
-- template contract matches field structure
-- resulting block is secure, semantic, and maintainable
+- each editable value is field-backed
+- field names align with block slug
+- render logic matches field shapes
+- output remains secure, semantic, maintainable

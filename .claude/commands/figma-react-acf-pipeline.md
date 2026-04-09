@@ -1,4 +1,4 @@
----
+﻿---
 name: figma-react-acf-pipeline
 description: Separate orchestrated pipeline for converting React code into production-ready ACF blocks. Usage: /figma-react-acf-pipeline react:/abs/path.tsx
 ---
@@ -18,7 +18,7 @@ Examples:
 
 1. Validate input contains at least one React source (`react:` or `react-dir:`).
 2. Delegate execution to `figma-react-to-acf-orchestrator` with the original arguments.
-3. Require an explicit site URL before running browser QA and Playwright testing.
+3. Require an explicit site URL before running Playwright testing.
 4. Return the orchestrator's consolidated report:
 - block partition plan
 - field architecture

@@ -1,4 +1,4 @@
----
+﻿---
 name: figma-pipeline
 description: Full Figma-to-block pipeline - fetch/cached design, create ACF blocks, review, fix, optimize and test. Usage: /figma-pipeline <Figma node URL | cache:/absolute/path/to/cache.json>
 ---
@@ -18,8 +18,7 @@ Run the full Figma-to-block pipeline from either a Figma node URL or a local cac
 - Review each block via `code-review-agent`
 - Fix any critical issues via `debug-agent` (conditional)
 - Optimize each block via `performance-agent`
-- Run visual QA via `browser-qa-tester`
-- Run interaction tests via `playwright-block-tester`
+- Run interaction/responsive tests via `playwright-block-tester`
 4. Surface the consolidated report returned by the agent.
 
 ## Input

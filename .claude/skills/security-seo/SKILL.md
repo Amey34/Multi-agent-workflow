@@ -1,54 +1,50 @@
 ﻿---
 name: security-seo
-description: Security, accessibility-aware SEO, and output-hardening checklist for WordPress ACF block templates.
+description: Security and semantic-SEO hardening checklist for ACF block templates and reviews.
 disable-model-invocation: true
 ---
 
-Apply this checklist whenever reviewing or implementing block templates.
+Apply this checklist during implementation and review.
 
-## 1) Security Hardening
+## 1. Security Fundamentals
 
-- Escape all dynamic output:
-  - text: `esc_html()`
-  - URLs: `esc_url()`
-  - attributes: `esc_attr()`
-  - rich content: controlled allowlist via `wp_kses_post()` when needed
-- Guard optional fields with null-safe checks.
-- Do not trust field data shape without validation.
-- Avoid inline scripts with untrusted data.
+- escape dynamic output by context (`esc_html`, `esc_url`, `esc_attr`)
+- use allowlisted HTML (`wp_kses_post`) only when needed
+- guard optional field structures before access
+- never pass untrusted data into inline scripts
 
-## 2) Semantic SEO Foundations
+## 2. Data Contract Safety
 
-- Use proper heading hierarchy without skips.
-- Keep landmark/section structure meaningful.
-- Ensure link text is descriptive.
-- Provide alt text strategy for non-decorative images.
+- field names/types must match template expectations
+- handle empty repeater/group states gracefully
+- avoid assumptions that lead to notices/fatals
 
-## 3) Accessibility Alignment
+## 3. Semantic SEO Baseline
 
-- Prefer semantic HTML before ARIA.
-- Ensure interactive controls are keyboard reachable.
-- Keep visible focus states intact.
-- Avoid ambiguous repeated CTA labels without context.
+- maintain logical heading hierarchy
+- use meaningful section/landmark structure
+- ensure link text conveys intent
+- ensure non-decorative media has alt strategy
 
-## 4) Performance-aware Markup
+## 4. Accessibility Cross-Checks
 
-- avoid excessive wrapper elements
-- reduce duplicate markup for similar states
-- use lazy loading for below-the-fold images where appropriate
+- prefer semantic controls before ARIA
+- ensure keyboard reachability of interactive elements
+- keep focus states visible
+- avoid unlabeled controls
 
-## 5) ACF Template Safety
+## 5. Markup Performance Hygiene
 
-- match field return types with template usage
-- handle empty repeater rows gracefully
-- avoid fatal behavior when fields are missing
+- reduce unnecessary wrapper depth
+- avoid repeated heavy markup patterns
+- use lazy loading where contextually appropriate
 
-## 6) Output Review Format
+## 6. Review Output Requirements
 
-When used in review mode, report:
-- issue severity
+When reporting findings include:
+- severity
 - file + line
-- why it matters
+- impact summary
 - minimal fix recommendation
 
 Keep findings specific and actionable.

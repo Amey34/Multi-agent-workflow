@@ -1,18 +1,15 @@
----
+﻿---
 name: optimize-block
-description: Optimize a block by running performance-agent and refactor-agent in parallel. Usage: /optimize-block <block-slug>
+description: Optimize a block using performance-agent. Usage: /optimize-block <block-slug>
 ---
 
-Optimize the specified ACF block for performance and code quality.
+Optimize the specified ACF block for performance and maintainability.
 
 ## Steps
 
-1. Identify the target block slug from `{{args}}`. If no slug is provided, ask the user which block to optimize.
-2. **Run in parallel** — delegate to both agents simultaneously:
-   - `performance-agent` — audit and optimize DOM size, CSS, JS, images, and responsive styles
-   - `refactor-agent` — improve code structure, remove duplication, improve readability
-3. Collect both reports.
-4. Return a consolidated report: optimizations applied, refactors made, and files modified.
+1. Identify target slug from `{{args}}`. If missing, ask user for block slug.
+2. Delegate to `performance-agent` for focused optimization (DOM, CSS, JS, responsive behavior).
+3. Return a consolidated report: optimizations applied and files modified.
 
 ## Input
 
