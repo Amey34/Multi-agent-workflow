@@ -1,4 +1,4 @@
----
+﻿---
 name: react-to-acf-mapping
 description: Mapping rules for converting Figma Make React components into WordPress ACF block structures, fields, and safe PHP rendering contracts.
 disable-model-invocation: true
@@ -6,45 +6,53 @@ disable-model-invocation: true
 
 # React to ACF Mapping Rules
 
-Use this when converting React UI structures into ACF blocks.
+Use this skill to convert React structures into maintainable ACF block architecture.
 
-## Component to block partitioning
+## 1) Block Partitioning
 
-- Prefer section-level components as block candidates.
-- Keep tiny presentational components inside the same block unless reused across multiple sections.
-- One block should represent one editor-manageable section.
+- Prefer section-level block boundaries.
+- Keep tiny presentational fragments inside parent block unless reused.
+- Avoid over-fragmentation that hurts editor usability.
 
-## Prop/state mapping
+## 2) Data Mapping
 
-- Static JSX copy -> text/textarea/WYSIWYG ACF fields.
-- Image `src`/`alt` pairs -> ACF image field (array return).
-- Link `href` + label -> ACF link field.
-- Repeated array maps -> repeater fields.
-- Optional nested objects -> group fields.
-- Avoid mapping ephemeral UI state (hover toggles, temporary filters) unless editor-controlled.
+- static JSX copy -> text/textarea/wysiwyg
+- image `src` + `alt` -> image field (array return)
+- link `href` + label -> link field
+- repeated arrays/maps -> repeater
+- optional nested structures -> group fields
+- transient UI state usually stays out of ACF
 
-## Styling migration
+## 3) Styling Migration
 
-- Convert utility-heavy class stacks into maintainable SCSS selectors.
-- Keep semantic class names scoped by block slug.
-- Preserve responsive intent from breakpoints.
-- Do not copy framework-specific runtime styles directly into PHP templates.
+- translate utility-heavy classes to scoped SCSS
+- use semantic, slug-based class naming
+- preserve responsive intent from React layout
+- avoid framework runtime style assumptions
 
-## JSX to PHP conversion
+## 4) JSX to PHP Translation
 
-- React conditional render -> PHP `if` guards with null-safe checks.
-- React list map -> `have_rows()` loops for repeaters.
-- Convert fragments into semantic wrappers only when needed.
-- Escape all dynamic output.
+- conditionals -> null-safe PHP `if` branches
+- list maps -> `have_rows()` + `the_row()` loops
+- fragments -> semantic wrappers only when required
+- escape every dynamic output value
 
-## JavaScript migration
+## 5) JavaScript Translation
 
-- If interactivity is simple (tabs, accordion, slider hooks), use `script.js`.
-- Avoid React runtime dependency in the final block frontend.
-- Ensure editor-safe re-init behavior where required.
+- add `script.js` only for meaningful interactivity
+- avoid React dependency in final frontend
+- ensure editor/frontend safe initialization
 
-## Authoring experience
+## 6) Authoring Experience
 
-- Use field labels that match content editor language, not developer jargon.
-- Keep required fields minimal.
-- Provide sensible defaults for headline, CTA label, and spacing options where useful.
+- editor-friendly field labels
+- minimal required fields
+- sensible defaults for common content fields
+- avoid over-configuring decorative details
+
+## 7) Validation Checklist
+
+- every editable item is field-backed
+- field names align with slug prefixes
+- template contract matches field structure
+- resulting block is secure, semantic, and maintainable

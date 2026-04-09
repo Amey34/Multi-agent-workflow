@@ -1,19 +1,37 @@
----
+﻿---
 name: create-acf-block
 description: Create a production-ready WordPress ACF block from a screenshot, Figma section, or brief description, write files to disk, and return only a manifest.
 ---
 
-Create or update a production-ready ACF block for this project.
+Create or update one production-ready ACF block aligned with this project.
 
-## Task
+## Input Modes
 
-1. Analyze the attached screenshot, Figma-linked context, or user description.
-2. Infer a descriptive kebab-case block slug.
-3. Identify the minimum relevant project files before reading.
-4. Use the intervaults theme as the structure reference.
-5. Create/update all required block files.
-6. If needed, update the theme registration.
-7. Output only:
-   - manifest of created/updated files
-   - brief notes
-     Do not print full source in chat.
+- screenshot/design reference
+- Figma-derived section notes
+- short textual brief
+
+## Step-by-Step
+
+1. Identify block purpose and infer descriptive slug.
+2. Read minimum relevant files only.
+3. Use existing theme/block patterns as implementation reference.
+4. Create/update required block files and field JSON.
+5. Register style import if missing.
+6. Apply security/a11y/responsive sanity checks.
+
+## Required Outputs on Disk
+
+- `blocks/{slug}/block.json`
+- `blocks/{slug}/render.php`
+- `blocks/{slug}/_style.scss`
+- `blocks/{slug}/script.js` if interactivity requires
+- `acf-json/{slug}-field-group.json`
+
+## Chat Output Contract
+
+Return only:
+- manifest of created/updated files
+- short notes on assumptions or risks
+
+Do not paste full source unless explicitly asked.

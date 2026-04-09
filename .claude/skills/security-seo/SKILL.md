@@ -1,43 +1,54 @@
----
+﻿---
 name: security-seo
-description: Security, accessibility, and SEO standards for WordPress block generation in this project.
+description: Security, accessibility-aware SEO, and output-hardening checklist for WordPress ACF block templates.
 disable-model-invocation: true
 ---
 
-# Security, accessibility, and SEO standards
+Apply this checklist whenever reviewing or implementing block templates.
 
-## Security
+## 1) Security Hardening
 
-- Escape all frontend output.
-- Sanitize attributes and URLs.
-- Never expose secrets or credentials.
-- Never add inline JS that interpolates untrusted values unsafely.
-- Prefer minimal PHP logic in templates.
-- If external links are intentionally opened in a new tab, include safe rel attributes where appropriate.
-- Avoid raw HTML output unless the field is explicitly intended for trusted WYSIWYG use and handled carefully.
+- Escape all dynamic output:
+  - text: `esc_html()`
+  - URLs: `esc_url()`
+  - attributes: `esc_attr()`
+  - rich content: controlled allowlist via `wp_kses_post()` when needed
+- Guard optional fields with null-safe checks.
+- Do not trust field data shape without validation.
+- Avoid inline scripts with untrusted data.
 
-## Accessibility
+## 2) Semantic SEO Foundations
 
-- Use semantic elements like `section`, `header`, `article`, `ul`, `li`, `figure`, `figcaption` when appropriate.
-- Images require meaningful alt text fallback logic.
-- Buttons and links must have visible or accessible labels.
-- Decorative media should not create noise for screen readers.
-- Preserve keyboard usability for interactive JS.
-- Carousels, tabs, accordions, and videos must be accessible if used.
+- Use proper heading hierarchy without skips.
+- Keep landmark/section structure meaningful.
+- Ensure link text is descriptive.
+- Provide alt text strategy for non-decorative images.
 
-## SEO
+## 3) Accessibility Alignment
 
-- Prefer clean semantic hierarchy.
-- Avoid multiple competing H1-style outputs inside reusable sections.
-- Use meaningful text for CTAs and links.
-- Support editor-controlled heading tags when appropriate.
-- Use image alt text from media library or a dedicated field fallback.
-- Avoid unnecessary div nesting.
-- Ensure block markup is indexable and not dependent on JS for basic content visibility.
+- Prefer semantic HTML before ARIA.
+- Ensure interactive controls are keyboard reachable.
+- Keep visible focus states intact.
+- Avoid ambiguous repeated CTA labels without context.
 
-## Performance
+## 4) Performance-aware Markup
 
-- Only load `script.js` when needed.
-- Keep DOM output lean.
-- Avoid unnecessary duplicate wrappers and redundant assets.
-- Reuse Bootstrap only where it helps instead of over-structuring markup.
+- avoid excessive wrapper elements
+- reduce duplicate markup for similar states
+- use lazy loading for below-the-fold images where appropriate
+
+## 5) ACF Template Safety
+
+- match field return types with template usage
+- handle empty repeater rows gracefully
+- avoid fatal behavior when fields are missing
+
+## 6) Output Review Format
+
+When used in review mode, report:
+- issue severity
+- file + line
+- why it matters
+- minimal fix recommendation
+
+Keep findings specific and actionable.

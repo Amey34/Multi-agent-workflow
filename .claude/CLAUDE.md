@@ -102,3 +102,16 @@ Never read or expose:
 - links must have safe URLs and sensible labels
 - avoid empty interactive elements
 - keep markup lean
+
+## Codex MCP Bridge
+
+Codex delegation must run through Codex MCP server tools.
+
+- Preferred command: /codex-delegate <task>
+- Agent-role command: /codex-agent-delegate agent:<name> task:<work>
+- Wrapper skill: codex-executor
+
+Guardrails:
+- use Codex MCP server (no script bridge)
+- no Codex Cloud
+- one refinement retry maximum
