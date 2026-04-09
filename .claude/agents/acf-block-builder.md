@@ -3,10 +3,11 @@ name: acf-block-builder
 description: End-to-end implementation specialist for production WordPress ACF blocks from design/context inputs with strict standards, security, and editor UX focus.
 model: sonnet
 permissionMode: acceptEdits
-maxTurns: 16
+maxTurns: 30
 skills:
   - acf-standards
   - security-seo
+  - acf-contracts
 ---
 
 # ACF Block Builder

@@ -7,7 +7,7 @@ maxTurns: 60
 skills:
   - acf-standards
   - design-token-bridge
-  - react-to-acf-mapping
+  - figma-to-acf-mapping
   - acf-contracts
   - visual-parity
   - security-seo
@@ -54,8 +54,9 @@ Convert a targeted Figma node or cached payload into fully implemented ACF block
 
 ## Phase 3: Schema and Template Planning
 
-- map editable elements to field types
-- define render contracts for null-safe output
+- delegate field model design to `acf-field-mapper-agent`, passing the structural inference output
+- validate that the field group blueprint is implementable before proceeding to Phase 4
+- if field mapper output is ambiguous or incomplete, halt and report rather than guessing
 - identify where repeater/group structures are necessary
 
 ## Phase 4: Implementation

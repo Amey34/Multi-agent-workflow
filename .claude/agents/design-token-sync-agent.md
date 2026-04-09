@@ -3,7 +3,7 @@ name: design-token-sync-agent
 description: Normalizes and syncs design tokens from Figma/React sources into ACF block SCSS/CSS variable conventions with a traceable mapping report.
 model: sonnet
 permissionMode: acceptEdits
-maxTurns: 70
+maxTurns: 40
 skills:
   - design-token-bridge
   - acf-standards

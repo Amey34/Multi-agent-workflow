@@ -4,6 +4,8 @@ description: Bridge agent that converts a targeted Figma node into a structured 
 model: sonnet
 permissionMode: acceptEdits
 maxTurns: 40
+skills:
+  - acf-standards
 ---
 
 # Figma To Pen Agent

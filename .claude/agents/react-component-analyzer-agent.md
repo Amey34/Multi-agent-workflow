@@ -2,7 +2,7 @@
 name: react-component-analyzer-agent
 description: Deep read-only analyzer that converts React structures into ACF-ready partition plans, field candidates, and migration notes.
 model: sonnet
-permissionMode: acceptEdits
+permissionMode: readOnly
 maxTurns: 26
 skills:
   - react-to-acf-mapping

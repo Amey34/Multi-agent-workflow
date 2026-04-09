@@ -3,7 +3,7 @@ name: acf-contract-auditor-agent
 description: Validates ACF JSON schema, block render contracts, and field/template consistency to prevent editor/runtime mismatches.
 model: sonnet
 permissionMode: acceptEdits
-maxTurns: 80
+maxTurns: 50
 skills:
   - acf-contracts
   - acf-standards

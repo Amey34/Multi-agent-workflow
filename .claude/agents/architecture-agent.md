@@ -1,9 +1,9 @@
 ﻿---
 name: architecture-agent
 description: Comprehensive architecture reviewer for WordPress theme/block systems with practical, low-risk improvement guidance.
-model: haiku
+model: sonnet
 permissionMode: acceptEdits
-maxTurns: 12
+maxTurns: 20
 skills:
   - acf-standards
 ---

@@ -1,9 +1,9 @@
 ﻿---
 name: accessibility-agent
 description: Deep accessibility audit and remediation specialist for WordPress ACF blocks, focused on semantics, interaction, and assistive technology compatibility.
-model: haiku
+model: sonnet
 permissionMode: acceptEdits
-maxTurns: 10
+maxTurns: 20
 skills:
   - security-seo
 ---

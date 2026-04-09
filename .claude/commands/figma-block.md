@@ -15,7 +15,8 @@ Build a production-ready ACF block from the provided Figma node link.
 6. Analyze design and infer a descriptive kebab-case block slug.
 7. Delegate to `acf-block-builder` to implement files.
 8. Ensure output follows project ACF, security, accessibility, SEO, and responsive standards.
-9. Output only a manifest of created/updated files and brief notes. Do not print raw Figma JSON.
+9. After builder completes, automatically run `/validate-acf-contracts <slug>` to catch any field/template mismatches before reporting done.
+10. Output only a manifest of created/updated files, contract validation outcome, and brief notes. Do not print raw Figma JSON.
 
 ## Input
 

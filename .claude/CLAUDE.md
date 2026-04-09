@@ -20,6 +20,9 @@ Use these agents for autonomous multi-step tasks. Do not replicate their work in
 | `figma-react-to-acf-orchestrator` | React-to-ACF pipeline orchestration |
 | `react-component-analyzer-agent` | Analyze React structure and propose block split + field mapping hints |
 | `acf-field-mapper-agent` | Build ACF field architecture from React-derived structures |
+| `acf-contract-auditor-agent` | Validate ACF JSON schema, render contracts, and field/template consistency |
+| `design-token-sync-agent` | Normalize and sync design tokens from Figma/React into SCSS/CSS variables |
+| `visual-regression-agent` | Screenshot-based visual parity checks across breakpoints vs. source reference |
 
 ## Skills
 
@@ -32,6 +35,10 @@ These skills are loaded automatically by agents and commands.
 | `playwright-test` | Reference | Playwright test checklist and output format |
 | `playwright-test` | Executable + Reference | Single-pass Playwright test via `/playwright-test` |
 | `react-to-acf-mapping` | Reference | Rules for translating React components/props into ACF fields/templates |
+| `figma-to-acf-mapping` | Reference | Rules for translating Figma node structure into ACF block partitions and fields |
+| `acf-contracts` | Reference | Field JSON ↔ template contract validation framework and escaping rules |
+| `design-token-bridge` | Reference | Token normalization from Figma/React design values to SCSS/CSS variables |
+| `visual-parity` | Reference | Breakpoint matrix and drift severity guide for screenshot comparisons |
 | `codex-executor` | Executable | Delegate scoped implementation to Codex MCP with preflight and acceptance checks |
 
 ## Commands
@@ -49,6 +56,10 @@ Dedicated command files in `.claude/commands/`. Executable skills are also invoc
 | `/figma-pipeline <Figma node URL | cache:/abs/path.json>` | Run full Figma-to-build pipeline (delegates to `build-from-figma-agent`) |
 | `/figma-react-acf-pipeline react:/abs/path.tsx` | Run React-to-ACF pipeline (delegates to `figma-react-to-acf-orchestrator`) |
 | `/review-all` | Review every block in parallel, auto-fix critical issues, and return consolidated report |
+| `/validate-acf-contracts <block-slug\|all>` | Validate ACF JSON ↔ render.php contract mismatches with optional auto-fix |
+| `/sync-design-tokens <source> [scope:]` | Normalize and sync design tokens from Figma/React into block SCSS variables |
+| `/visual-regression-block site-url: scope: [reference:]` | Screenshot parity checks across breakpoints vs. Figma/cache/baseline |
+| `/post-pipeline-quality-gate source: scope: [site-url:] [reference:]` | Sequenced gate: contract audit → token sync → visual regression after any pipeline run |
 | `/codex-delegate <task>` | Delegate scoped implementation task to Codex MCP |
 | `/codex-agent-delegate agent:<name> task:<work>` | Delegate with explicit `.codex/agents/<name>.md` policy context |
 

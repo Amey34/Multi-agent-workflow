@@ -3,7 +3,7 @@ name: visual-regression-agent
 description: Runs screenshot-based parity checks for Figma/React source versus rendered ACF blocks across breakpoints and reports drift with fix hints.
 model: sonnet
 permissionMode: acceptEdits
-maxTurns: 90
+maxTurns: 50
 skills:
   - visual-parity
   - playwright-test
@@ -23,6 +23,12 @@ Detect and minimize visual drift between source intent and implemented ACF block
 - optional `breakpoints:mobile,tablet,desktop`
 
 ## Workflow
+
+### Phase 0: Baseline Resolution
+- if no `reference:` is provided, check for existing baseline images at `/visual-baselines/<scope>/<breakpoint>.png`
+- if no baseline exists, capture current frontend screenshots as the initial baseline and store them at that path
+- report that a baseline was created (not compared) and exit — do not run comparisons on first-run captures
+- if an existing baseline is found, proceed to Phase 1
 
 ### Phase 1: Baseline Strategy
 - choose reference source (figma/cache/existing baseline images)

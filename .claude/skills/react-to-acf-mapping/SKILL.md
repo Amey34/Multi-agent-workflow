@@ -49,6 +49,21 @@ Avoid flexible content unless variation is truly open-ended.
 - preserve responsive intent
 - avoid copying framework runtime dependencies into template
 
+### CSS Modules
+- `styles.container` references → extract class names as slug-scoped SCSS selectors
+- discard the module import; replicate the intent as `.{slug}__container {}` in `_style.scss`
+- watch for composed styles (`composes:`) — flatten composition into the SCSS ruleset
+
+### Tailwind Utility Classes
+- map utility stacks to SCSS properties directly (e.g. `flex gap-4 items-center` → `display: flex; gap: 1rem; align-items: center;`)
+- use theme spacing/color variables where Tailwind maps to a design scale
+- do not include Tailwind as a runtime dependency in the block
+
+### Styled Components / Emotion (CSS-in-JS)
+- extract interpolated style values as SCSS variables or hardcoded values
+- dynamic prop-driven styles become PHP-conditional class modifiers on the wrapper element
+- template literals with runtime logic should be reduced to ACF field-driven class toggling in `render.php`
+
 ## Section 6: Interaction Migration
 
 - add `script.js` only for true behavior needs

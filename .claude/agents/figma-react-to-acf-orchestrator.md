@@ -4,6 +4,9 @@ description: Multi-agent orchestrator for React-to-ACF conversion, from analysis
 model: sonnet
 permissionMode: acceptEdits
 maxTurns: 140
+skills:
+  - react-to-acf-mapping
+  - acf-standards
 ---
 
 # React To ACF Orchestrator
@@ -43,6 +46,11 @@ Convert React source into production-ready ACF blocks via specialized delegates 
 ### Phase 2: Structure Analysis
 - request block partition and content model hints
 - confirm section-level boundaries
+
+### Phase 2.5: Handoff Validation
+- before proceeding to field architecture, verify the partition plan is implementable
+- check: every block has a clear slug, a defined content model, and at least one field candidate
+- if the blueprint is vague or incomplete, route back to `react-component-analyzer-agent` for one clarification pass; halt and report if still unresolved
 
 ### Phase 3: Field Architecture
 - map each block to schema design task
