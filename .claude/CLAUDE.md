@@ -16,6 +16,7 @@ Use these agents for autonomous multi-step tasks. Do not replicate their work in
 | `accessibility-agent` | Audit and fix accessibility issues such as semantics, labels, and keyboard access |
 | `architecture-agent` | Review theme folder structure, block organization, and asset loading patterns |
 | `build-from-figma-agent` | Full Figma-to-block pipeline orchestration |
+| `figma-to-pen-agent` | Convert a Figma node/cache payload into a structured `.pen` design document |
 | `figma-react-to-acf-orchestrator` | React-to-ACF pipeline orchestration |
 | `react-component-analyzer-agent` | Analyze React structure and propose block split + field mapping hints |
 | `acf-field-mapper-agent` | Build ACF field architecture from React-derived structures |
@@ -41,6 +42,7 @@ Dedicated command files in `.claude/commands/`. Executable skills are also invoc
 |---|---|
 | `/figma-block <Figma node URL>` | Fetch a Figma node and build a production-ready ACF block (delegates to `acf-block-builder`) |
 | `/figma-cache <Figma node URL>` | Fetch a single Figma node once and store local cache JSON |
+| `/figma-to-pen <figma:<URL> | cache:/abs/path.json> [pen:/abs/path/output.pen]` | Convert Figma source directly into `.pen` using figma+pencil MCP (delegates to `figma-to-pen-agent`) |
 | `/review-block <block-slug>` | Run full code review on a block (delegates to `code-review-agent`) |
 | `/debug-block <block-slug> <issue>` | Debug a broken or misbehaving block (delegates to `debug-agent`) |
 | `/optimize-block <block-slug>` | Optimize a block for performance (delegates to `performance-agent`) |

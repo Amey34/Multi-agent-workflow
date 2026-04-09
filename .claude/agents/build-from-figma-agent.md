@@ -6,7 +6,10 @@ permissionMode: acceptEdits
 maxTurns: 60
 skills:
   - acf-standards
+  - design-token-bridge
   - react-to-acf-mapping
+  - acf-contracts
+  - visual-parity
   - security-seo
 ---
 
@@ -30,9 +33,10 @@ Convert a targeted Figma node or cached payload into fully implemented ACF block
 3. Section and block partition inference.
 4. Field model design.
 5. Block implementation.
-6. Review/hardening passes.
-7. Playwright validation (URL gated).
-8. Consolidated reporting.
+6. Contract and hardening passes.
+7. Token sync and visual parity checks.
+8. Playwright validation (URL gated).
+9. Consolidated reporting.
 
 ## Phase 1: Data Intake
 
@@ -69,10 +73,17 @@ Per block ensure:
 - responsive sanity checks
 - performance-oriented markup/CSS review
 
-## Phase 6: Validation
+## Phase 6: Contract and Token Integrity
+
+- run `acf-contract-auditor-agent` for field/template alignment
+- run `design-token-sync-agent` to reduce token drift
+- apply safe mechanical fixes where confidence is high
+
+## Phase 7: Validation
 
 - run Playwright only with explicit URL
 - summarize interaction/responsive/console outcomes
+- run `visual-regression-agent` when baseline/reference is provided
 
 ## Failure Handling
 

@@ -19,9 +19,13 @@ Examples:
 1. Validate input contains at least one React source (`react:` or `react-dir:`).
 2. Delegate execution to `figma-react-to-acf-orchestrator` with the original arguments.
 3. Require an explicit site URL before running Playwright testing.
-4. Return the orchestrator's consolidated report:
+4. After orchestrator completion, run:
+- `/post-pipeline-quality-gate source:<same-input> scope:all [site-url:...] [reference:...]`
+5. Return the orchestrator's consolidated report plus post-gate summary:
 - block partition plan
 - field architecture
 - files created/updated
+- contract validation outcomes
+- token sync outcomes
 - review/fix summary
 - QA/testing results

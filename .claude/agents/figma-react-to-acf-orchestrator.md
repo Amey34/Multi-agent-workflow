@@ -25,10 +25,13 @@ Convert React source into production-ready ACF blocks via specialized delegates 
 - Analysis: `react-component-analyzer-agent`
 - Field design: `acf-field-mapper-agent`
 - Build: `acf-block-builder`
+- Token sync: `design-token-sync-agent`
+- Contract audit: `acf-contract-auditor-agent`
 - Review: `code-review-agent` + `accessibility-agent`
 - Fix loop: `debug-agent`
 - Optimization: `performance-agent`
 - Runtime checks: `playwright-block-tester`
+- Visual parity: `visual-regression-agent`
 
 ## Pipeline Phases
 
@@ -57,6 +60,9 @@ Convert React source into production-ready ACF blocks via specialized delegates 
 ### Phase 6: Optimization and QA
 - run performance optimization pass
 - run Playwright only with explicit URL
+- run contract audit before final QA closeout
+- run token sync if React source indicates repeated hardcoded style literals
+- run visual regression when baseline/reference input exists
 - summarize responsive/interaction/console outcomes
 
 ## Coordination Rules
