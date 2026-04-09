@@ -70,9 +70,3 @@ This folder contains the Claude-side operating system for this repository:
    - `/optimize-block <slug>`
 4. React migration:
    - `/figma-react-acf-pipeline react:/...`
-
-## Notes
-
-- `CLAUDE.md` contains project-level behavior and constraints.
-- `settings.json` exists and is currently empty.
-- Commands are designed to keep scope tight (block-level by default) and automate review/fix loops where configured.
