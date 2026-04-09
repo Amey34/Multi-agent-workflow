@@ -1,57 +1,70 @@
 ﻿---
 name: react-to-acf-mapping
-description: Practical mapping rules for converting React structures into ACF field models and safe PHP templates.
+description: Long-form mapping framework for converting React structures into robust, editor-friendly ACF block implementations.
 disable-model-invocation: true
 ---
 
-# React to ACF Mapping
+# React to ACF Mapping Skill
 
-Use this guide when converting React components into editor-manageable ACF blocks.
+## Purpose
 
-## 1. Partition Strategy
+Provide a deterministic conversion framework from React UI patterns to ACF schema + PHP templates.
 
-- map major sections to block candidates
-- keep tiny view-only fragments inside parent block
-- split only when editor ownership or reuse justifies it
+## Section 1: Partition Strategy
 
-## 2. Field Mapping Rules
+- prefer section-level block boundaries
+- avoid splitting tiny presentational fragments into separate blocks
+- split when editor ownership or reuse justifies it
 
-- static text -> text/textarea/wysiwyg
-- link pairs -> link field
-- image `src + alt` -> image field (array return)
-- repeated arrays -> repeater
-- optional nested objects -> group field
-- transient UI state usually stays in JS
+## Section 2: Content Ownership
 
-## 3. Template Translation
+For each React section, classify:
+- editor-managed text/media/actions
+- decorative static assets
+- runtime-only state
 
-- React conditionals -> null-safe PHP conditionals
-- `map()` loops -> repeater loops
-- preserve semantic heading and section structure
-- escape all dynamic output
+Only editor-managed content becomes ACF fields.
 
-## 4. Styling Translation
+## Section 3: Field Mapping Matrix
 
-- convert utility-heavy class stacks into maintainable SCSS
-- keep class naming block-scoped and semantic
+- static copy -> text/textarea/wysiwyg
+- image src/alt -> image field (array return)
+- link href/label -> link field
+- repeated arrays -> repeater fields
+- optional nested sets -> group fields
+
+Avoid flexible content unless variation is truly open-ended.
+
+## Section 4: Template Translation
+
+- React conditionals -> null-safe PHP branches
+- React maps -> repeater loops
+- preserve semantic HTML hierarchy
+- escape dynamic outputs by context
+
+## Section 5: Styling Migration
+
+- convert utility-heavy class stacks to maintainable SCSS
+- keep class names block-scoped
 - preserve responsive intent
+- avoid copying framework runtime dependencies into template
 
-## 5. Interaction Translation
+## Section 6: Interaction Migration
 
-- add `script.js` only when behavior is required
-- avoid React runtime dependency on frontend
-- ensure editor/frontend safe re-init for dynamic blocks
+- add `script.js` only for true behavior needs
+- no React runtime dependency in final block frontend
+- ensure editor/frontend re-init safety
 
-## 6. Editor Experience
+## Section 7: Editor Experience
 
-- human-readable field labels
-- minimal required fields
-- sensible defaults for common content patterns
-- avoid over-configuring decorative controls
+- labels should match editor language
+- required fields should be minimal
+- defaults should reduce friction for common use cases
+- avoid exposing overly technical controls to editors
 
-## 7. Validation
+## Section 8: Validation Checklist
 
-- each editable value is field-backed
-- field names align with block slug
-- render logic matches field shapes
-- output remains secure, semantic, maintainable
+- every editable visual element is field-backed
+- field naming follows slug conventions
+- template logic matches field shapes
+- no critical a11y/security regressions introduced

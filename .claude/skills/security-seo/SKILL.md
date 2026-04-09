@@ -1,50 +1,73 @@
 ﻿---
 name: security-seo
-description: Security and semantic-SEO hardening checklist for ACF block templates and reviews.
+description: Comprehensive security and semantic-SEO review checklist for WordPress ACF block templates and audits.
 disable-model-invocation: true
 ---
 
-Apply this checklist during implementation and review.
+# Security and SEO Skill
 
-## 1. Security Fundamentals
+## Purpose
 
-- escape dynamic output by context (`esc_html`, `esc_url`, `esc_attr`)
-- use allowlisted HTML (`wp_kses_post`) only when needed
-- guard optional field structures before access
-- never pass untrusted data into inline scripts
+Ensure block outputs are safe, semantically strong, and discoverability-friendly while preserving accessibility and performance.
 
-## 2. Data Contract Safety
+## Security Section
 
-- field names/types must match template expectations
-- handle empty repeater/group states gracefully
-- avoid assumptions that lead to notices/fatals
+### Output Escaping
 
-## 3. Semantic SEO Baseline
+Use context-correct escaping:
+- text -> `esc_html()`
+- URL -> `esc_url()`
+- attribute -> `esc_attr()`
+- controlled rich HTML -> `wp_kses_post()` when justified
 
-- maintain logical heading hierarchy
-- use meaningful section/landmark structure
-- ensure link text conveys intent
-- ensure non-decorative media has alt strategy
+### Data Guarding
 
-## 4. Accessibility Cross-Checks
+- validate optional arrays before nested access
+- guard repeater/group loops for empty states
+- avoid assumptions that create notices/fatals
 
-- prefer semantic controls before ARIA
-- ensure keyboard reachability of interactive elements
-- keep focus states visible
-- avoid unlabeled controls
+### Script/Data Safety
 
-## 5. Markup Performance Hygiene
+- avoid injecting untrusted content into JS contexts
+- avoid unsafe inline scripting patterns
 
-- reduce unnecessary wrapper depth
-- avoid repeated heavy markup patterns
-- use lazy loading where contextually appropriate
+## Semantic SEO Section
 
-## 6. Review Output Requirements
+- maintain heading hierarchy
+- use meaningful sectioning and landmarks
+- ensure CTA/link text communicates destination/action
+- maintain meaningful media alt strategy
 
-When reporting findings include:
+## Accessibility Alignment
+
+- semantic controls before ARIA
+- interactive elements must be keyboard reachable
+- focus states should remain visible
+- avoid unlabeled or duplicate ambiguous controls
+
+## Performance-Aware Markup
+
+- avoid unnecessary wrappers
+- reduce duplicated heavy markup branches
+- use lazy loading for non-critical images when suitable
+
+## Review Output Standard
+
+For every issue report:
 - severity
 - file + line
-- impact summary
-- minimal fix recommendation
+- why it matters
+- minimal remediation approach
 
-Keep findings specific and actionable.
+## Severity Guide
+
+- Critical: security exposure or severe semantic breakage
+- High: major user/search/accessibility risk
+- Medium: quality and maintainability gaps
+- Low: polish improvements
+
+## Done Criteria
+
+- no critical unresolved security issues in scope
+- semantic structure and content signals are coherent
+- findings are actionable and specific

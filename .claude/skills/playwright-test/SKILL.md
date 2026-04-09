@@ -1,41 +1,78 @@
 ﻿---
 name: playwright-test
-description: Real-browser QA checklist for block-level rendering, interaction, responsiveness, and runtime health.
+description: Detailed browser QA checklist for block validation via Playwright MCP, including rendering, interaction, responsiveness, and runtime health.
 ---
 
-Use this skill for focused Playwright-based validation.
+# Playwright Test Skill
+
+## Purpose
+
+Provide consistent, reproducible browser verification for block-level work.
 
 ## Preconditions
 
-- explicit URL is mandatory
-- define target scope (specific block/section/page)
+- explicit target URL is required
+- clarify test scope (specific block or full page)
+- note any expected interactions provided by user
 
-## Test Checklist
+## Test Phases
 
-1. Rendering
-- expected content and structure appear
-- no obvious clipping/overlap defects
+### Phase 1: Render Sanity
 
-2. Responsiveness
-- test representative mobile/tablet/desktop widths
-- check wrapping, overflow, and layout shifts
+- confirm key sections are visible
+- verify no immediate clipping/overlap issues
+- ensure critical content is not hidden offscreen
 
-3. Interactions
-- hover/focus/click behavior
-- controls toggle/navigate as intended
+### Phase 2: Interaction Validation
 
-4. Runtime health
-- inspect console for errors/warnings that affect UX
+- test hover/focus/click behavior
+- validate toggles/accordion/tabs/sliders where present
+- ensure interactive states are visually clear
 
-5. Keyboard basics
-- interactive elements reachable by tab
-- focus visible and progression sane
+### Phase 3: Responsive Checks
+
+Run at representative sizes:
+- mobile
+- tablet
+- desktop
+
+Check:
+- wrapping
+- spacing consistency
+- overflow/horizontal scroll
+- major layout shifts
+
+### Phase 4: Runtime Diagnostics
+
+- inspect console for errors/warnings
+- prioritize issues that affect UX/functionality
+
+### Phase 5: Keyboard Basics
+
+- tab path reaches actionable controls
+- focus remains visible and logical
+
+## Reporting Rules
+
+For each issue include:
+- severity
+- concise reproduction steps
+- observed behavior
+- expected behavior
+- suggested minimal fix
 
 ## Output Contract
 
 Return only:
 - pass/fail summary
-- issues with concise repro steps
-- minimal suggested fixes
+- issue list
+- concise fix recommendations
 
-Do not include noisy logs unless specifically requested.
+Avoid verbose logs unless requested.
+
+## Severity Guide
+
+- Critical: core interaction broken or page unusable
+- High: major layout or interaction issue
+- Medium: noticeable but non-blocking defect
+- Low: minor polish issue

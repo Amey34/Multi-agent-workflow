@@ -1,72 +1,102 @@
 ﻿---
 name: acf-standards
-description: Canonical implementation standards for production ACF Gutenberg blocks in this repository.
+description: Comprehensive production standards for ACF Gutenberg block implementation in this repository.
 disable-model-invocation: true
 ---
 
-# ACF Standards
+# ACF Standards Skill
 
-Apply these rules whenever creating or modifying block code.
+This is the canonical reference for building or updating ACF blocks.
 
-## 1. Registration and Metadata
+## Purpose
 
-- use `block.json` registration
-- avoid deprecated block registration APIs
-- ensure stable identifiers and `acf.renderTemplate`
-- include supports/settings that match real block behavior
+Ensure every block is consistent, secure, maintainable, and editor-friendly.
 
-## 2. Required File Set
+## Section 1: Registration Standards
 
-Each block should include:
-- `block.json`
-- `render.php`
-- `_style.scss`
-- `script.js` only when interaction exists
-- local ACF JSON in `acf-json/`
+- prefer `block.json` registration patterns
+- avoid deprecated APIs
+- keep metadata stable and descriptive
 
-## 3. Naming Consistency
+Required metadata checks:
+- `apiVersion`
+- `name`, `title`, `category`
+- `supports`
+- `acf.renderTemplate`
 
-- descriptive kebab-case slug
-- slug aligned across folder, block name, fields, and CSS namespace
-- no placeholder/demo slugs in final output
+## Section 2: Required File Structure
 
-## 4. Field Architecture
+For each block, expect:
+- `blocks/{slug}/block.json`
+- `blocks/{slug}/render.php`
+- `blocks/{slug}/_style.scss`
+- `blocks/{slug}/script.js` only if behavior requires
+- `acf-json/{slug}-field-group.json`
 
-- use import-ready local JSON
-- stable, unique field keys
+## Section 3: Slug and Naming Conventions
+
+- use descriptive kebab-case slugs
+- enforce slug consistency across:
+  - folder
+  - block name
+  - field names
+  - CSS namespace
+  - JSON file naming
+
+Avoid placeholders and temporary names in final files.
+
+## Section 4: ACF Field Design Rules
+
+- use import-ready local JSON format
+- stable and unique field keys
 - slug-prefixed field names
-- editor-friendly structure with minimal nesting
-- explicit return formats for links/images
+- avoid unnecessary deep nesting
+- repeaters only for true repeated structures
+- group fields for cohesive optional subsets
+- explicit return formats for images/links/selects
 
-## 5. Template Standards
+## Section 5: Template Rules (`render.php`)
 
-- semantic markup and accessible structure
-- escaped dynamic output everywhere
-- null-safe rendering for optional fields
-- avoid unnecessary wrapper depth
+- semantic HTML first
+- context-appropriate escaping for all dynamic output
+- null-safe field handling
+- minimal wrapper depth
+- predictable conditional logic
 
-## 6. SCSS Standards
+## Section 6: SCSS Rules
 
-- block-scoped selectors
-- responsive coverage for mobile/tablet/desktop
-- maintainable specificity
-- fluid typography/spacing where appropriate
+- scope styles to block namespace
+- include responsive behavior at practical breakpoints
+- avoid overly specific selectors
+- maintain readable structure and naming
 
-## 7. JS Standards
+## Section 7: JS Rules
 
-- add JS only for real behavior
-- support frontend + editor lifecycle
-- avoid global namespace leakage
+- include JS only for meaningful interactions
+- support frontend and editor lifecycle
+- avoid global leaks
+- keep initialization idempotent
 
-## 8. Theme Integration
+## Section 8: Integration Rules
 
-- ensure block style import exists once in `assets/css/styles.scss`
-- avoid duplicate imports
+Ensure style import exists exactly once:
+`@import '../../blocks/{slug}/style';`
 
-## 9. Final Gate
+No duplicate imports.
 
-Before completion confirm:
-- editable content is field-driven
-- template and field contracts align
-- escaping/a11y basics pass
-- responsive behavior is preserved
+## Section 9: Quality Gate Checklist
+
+Before considering block complete:
+- editor-managed content is field-driven
+- field/template contract matches
+- dynamic outputs are escaped
+- no critical a11y issues in scope
+- responsive behavior still correct
+
+## Section 10: Anti-Patterns
+
+Do not:
+- hardcode content that editors should control
+- over-engineer field schemas
+- add JS for non-interactive effects
+- broaden scope into unrelated architecture changes

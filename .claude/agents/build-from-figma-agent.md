@@ -1,9 +1,9 @@
 ﻿---
 name: build-from-figma-agent
-description: End-to-end Figma-to-ACF block delivery orchestrator: fetch node data, derive content model, implement blocks, and run hardening checks.
+description: Full-pipeline Figma-to-ACF orchestrator for converting node-level design intent into production block implementation and validation.
 model: sonnet
 permissionMode: acceptEdits
-maxTurns: 50
+maxTurns: 60
 skills:
   - acf-standards
   - react-to-acf-mapping
@@ -12,65 +12,84 @@ skills:
 
 # Build From Figma Agent
 
-## Mission
+## Core Objective
 
-Convert targeted Figma design context into production-ready ACF blocks with clean field architecture and implementation-ready templates.
+Convert a targeted Figma node or cached payload into fully implemented ACF blocks with clear field architecture, secure templates, responsive styling, and validation summary.
 
 ## Input Modes
 
-- `figma:<url with fileKey and node-id>`
-- cached local JSON path (validated)
+- `figma:<node URL with fileKey and node-id>`
+- `cache:<absolute-path.json>`
 - optional slug hints
-- optional `site-url` for browser validation
+- optional `site-url` for Playwright checks
 
-## Pipeline
+## Pipeline Overview
 
-1. Validate input and choose mode.
-2. Fetch/read node-level design payload (never full file by default).
-3. Infer section boundaries and candidate block slugs.
-4. Define ACF field architecture per block.
-5. Delegate/implement block files and SCSS wiring.
-6. Run review/hardening passes (security, a11y, performance).
-7. Run Playwright checks only when explicit URL is provided.
+1. Input validation and mode selection.
+2. Node-level data acquisition.
+3. Section and block partition inference.
+4. Field model design.
+5. Block implementation.
+6. Review/hardening passes.
+7. Playwright validation (URL gated).
+8. Consolidated reporting.
 
-## Block Deliverables
+## Phase 1: Data Intake
 
-Per block, ensure:
-- `blocks/{slug}/block.json`
-- `blocks/{slug}/render.php`
-- `blocks/{slug}/_style.scss`
-- `blocks/{slug}/script.js` if required
-- `acf-json/{slug}-field-group.json`
+- validate source format
+- normalize node identifiers
+- avoid whole-file fetches when node target exists
+- capture source assumptions explicitly
 
-And integration:
-- one SCSS import in `assets/css/styles.scss`
+## Phase 2: Structural Inference
 
-## Design Interpretation Rules
+- identify section boundaries
+- infer slug candidates
+- classify repeated patterns
+- identify interactive components
 
-- preserve semantic structure over wrapper-heavy fidelity
-- move editable text/media into fields
-- keep repeater usage intentional
-- preserve responsive intent from design
+## Phase 3: Schema and Template Planning
+
+- map editable elements to field types
+- define render contracts for null-safe output
+- identify where repeater/group structures are necessary
+
+## Phase 4: Implementation
+
+Per block ensure:
+- `block.json`, `render.php`, `_style.scss`
+- `script.js` only when needed
+- ACF local JSON file
+- SCSS import wiring in global stylesheet
+
+## Phase 5: Hardening
+
+- security escaping
+- semantic/accessibility checks
+- responsive sanity checks
+- performance-oriented markup/CSS review
+
+## Phase 6: Validation
+
+- run Playwright only with explicit URL
+- summarize interaction/responsive/console outcomes
 
 ## Failure Handling
 
-- continue unaffected blocks when one block fails
-- report exact failure stage and reason
+- continue unaffected blocks when isolated failures occur
+- report exact stage and reason for each failure
 - avoid silent fallback behavior
 
-## Output Format
+## Output Contract
 
-### Input Summary
-- mode, file key/node id or cache path
+### Source Summary
+### Block Partition Plan
+### File Manifest
+### Validation Results
+### Open Risks and Blockers
 
-### Block Plan
-- slugs and partition rationale
+## Done Criteria
 
-### Files Changed
-- per block manifest
-
-### Validation Summary
-- checks run and key findings
-
-### Blockers
-- unresolved issues and required follow-up
+- target blocks implemented and integrated
+- source assumptions documented
+- unresolved gaps clearly listed with next actions
